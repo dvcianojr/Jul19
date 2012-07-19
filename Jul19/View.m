@@ -18,10 +18,8 @@
 		// Initialization code
 		self.backgroundColor = [UIColor whiteColor];
 		self.editable = NO;	//Don't pop up a keyboard.
-		self.font = [UIFont fontWithName: @"Courier" size: 14]; //monospace
+		self.font = [UIFont fontWithName: @"Courier" size: 13]; //monospace
 		viewController = c;
-		
-		
 		
 		CGFloat height = [@"A" sizeWithFont: self.font].height;
 		
@@ -80,7 +78,7 @@
 {
 	// Drawing code
 	
-	// get IBM price from yahoo finance URL
+	// get stock data from yahoo finance URL
 	NSString *urlGetString =@"http://finance.yahoo.com/d/quotes.csv?s=";
 	urlGetString = [urlGetString stringByAppendingFormat:
 					@"%@&f=sd1t1l1ohgpjkee7e8e9dyqr1b4rp5p6a2n",viewController.symKey];
@@ -100,7 +98,7 @@
 			self.text = [err localizedDescription]; // display error message
 		else 
 		{
-			// TODO:parse data
+			// parse data
 			NSArray *components = [sData componentsSeparatedByString:@","];
 			NSString *sym = [components objectAtIndex:0];	
 			sym = [sym substringWithRange: NSMakeRange (1, sym.length - 2)];//remove double quotes
